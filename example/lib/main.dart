@@ -9,8 +9,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isKeptOn = false;
-  double _brightness = 1.0;
+  bool? _isKeptOn = false;
+  double? _brightness = 1.0;
 
   @override
   void initState() {
@@ -19,8 +19,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
-    bool keptOn = await Screen.isKeptOn;
-    double brightness = await Screen.brightness;
+    bool? keptOn = await Screen.isKeptOn;
+    double? brightness = await Screen.brightness;
     setState(() {
       _isKeptOn = keptOn;
       _brightness = brightness;
@@ -39,8 +39,8 @@ class _MyAppState extends State<MyApp> {
                 Text('Screen is kept on ? '),
                 Checkbox(
                   value: _isKeptOn,
-                  onChanged: (bool b) {
-                    Screen.keepOn(b);
+                  onChanged: (bool? b) {
+                    Screen.keepOn(b!);
                     setState(() {
                       _isKeptOn = b;
                     });
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
               ]),
               Text('Brightness :'),
               Slider(
-                value: _brightness,
+                value: _brightness!,
                 onChanged: (double b) {
                   setState(() {
                     _brightness = b;
